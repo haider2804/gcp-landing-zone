@@ -99,6 +99,17 @@ resource "google_org_policy_policy" "skip_default_network" {
 # restrictions. Disabling this forces use of Workload Identity
 # or short-lived tokens instead.
 # ─────────────────────────────────────────────────────────────
+resource "google_org_policy_policy" "disable_sa_key_creation" {
+  name   = "organizations/${var.org_id}/policies/iam.disableServiceAccountKeyCreation"
+  parent = "organizations/${var.org_id}"
+
+  spec {
+    rules {
+      enforce = "TRUE"
+    }
+  }
+}
+
 
 resource "google_essential_contacts_contact" "security_org" {
     provider = google-beta
