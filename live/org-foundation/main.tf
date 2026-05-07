@@ -33,7 +33,7 @@ resource "google_project" "network_hub" {
     labels = merge(var.labels, {environment = "shared", purpose = "network-host"})
 
     lifecycle {
-      prevent_destroy = true
+      prevent_destroy = false
     }
   
 }
@@ -54,7 +54,7 @@ resource "google_project" "prod" {
   labels          = merge(var.labels, { environment = "prod" })
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
 
@@ -68,7 +68,7 @@ resource "google_project" "audit" {
   labels          = merge(var.labels, { environment = "shared", purpose = "audit-logs" })
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
 
