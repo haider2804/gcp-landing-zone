@@ -11,7 +11,7 @@
 
 resource "google_folder" "landing_zone" {
     display_name = "landing-zone"
-    parent = "organizations/$var.org_id"
+    parent = "organizations/${var.org_id}"
   
 }
 
