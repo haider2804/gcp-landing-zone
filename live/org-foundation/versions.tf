@@ -18,12 +18,6 @@ terraform {
 
   backend "gcs" {
     bucket = "lz-tfstate-998138295919"
-    prefix = "live/org-foundationgit status
-    "
-    
+    prefix = "live/org-foundationgit status"
   }
-
-
-
-
 }
