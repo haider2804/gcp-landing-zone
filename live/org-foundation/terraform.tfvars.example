@@ -1,0 +1,7 @@
+# terraform.tfvars.example
+# TEMPLATE — safe to commit. Shows the required variable shape.
+# Copy to terraform.tfvars, fill in real values, never commit terraform.tfvars.
+
+org_id                 = "YOUR_ORG_ID"
+billing_account        = "YOUR_BILLING_ACCOUNT_ID"
+security_contact_email = "YOUR_EMAIL@gmail.com"

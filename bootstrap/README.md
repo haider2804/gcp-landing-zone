@@ -1,0 +1,1 @@
+# Bootstrap — manual one-time setup. See root README for instructions.

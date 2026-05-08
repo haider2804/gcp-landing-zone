@@ -1,0 +1,34 @@
+# ============================================================
+# Terraform — never commit these
+# ============================================================
+
+# Provider binaries and cached modules (downloaded by terraform init)
+**/.terraform/
+
+# State files — state lives in GCS, never locally
+*.tfstate
+*.tfstate.backup
+
+# Saved plan files — contain sensitive data
+*.tfplan
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Variable files that contain real values
+# terraform.tfvars.example IS committed (it's a template)
+# terraform.tfvars is NOT committed (it has real values)
+terraform.tfvars
+*.auto.tfvars
+
+# Terraform lock file — this one IS committed (keeps provider versions pinned)
+# So we do NOT ignore .terraform.lock.hcl
+
+# ============================================================
+# OS / Editor noise
+# ============================================================
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+*.swp
