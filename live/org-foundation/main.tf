@@ -10,9 +10,9 @@
 # ─────────────────────────────────────────────────────────────
 
 resource "google_folder" "landing_zone" {
-    display_name = "landing-zone"
-    parent = "organizations/${var.org_id}"
-  
+  display_name = "landing-zone"
+  parent       = "organizations/${var.org_id}"
+
 }
 
 # ─────────────────────────────────────────────────────────────
@@ -26,16 +26,16 @@ resource "google_folder" "landing_zone" {
 # No application workloads run here.
 
 resource "google_project" "network_hub" {
-    name = "LZ Network Hub"
-    project_id = "lz-net-hub-${var.org_id}"
-    folder_id = google_folder.landing_zone.name
-    billing_account = var.billing_account
-    labels = merge(var.labels, {environment = "shared", purpose = "network-host"})
+  name            = "LZ Network Hub"
+  project_id      = "lz-net-hub-${var.org_id}"
+  folder_id       = google_folder.landing_zone.name
+  billing_account = var.billing_account
+  labels          = merge(var.labels, { environment = "shared", purpose = "network-host" })
 
-    lifecycle {
-      prevent_destroy = true
-    }
-  
+  lifecycle {
+    prevent_destroy = true
+  }
+
 }
 
 resource "google_project" "dev" {
@@ -46,8 +46,8 @@ resource "google_project" "dev" {
   labels          = merge(var.labels, { environment = "dev" })
 
   lifecycle {
-      prevent_destroy = true
-    }
+    prevent_destroy = true
+  }
 }
 
 resource "google_project" "prod" {
@@ -116,12 +116,12 @@ resource "google_org_policy_policy" "disable_sa_key_creation" {
 
 
 resource "google_essential_contacts_contact" "security_org" {
-    provider = google-beta
-    parent = "organizations/${var.org_id}"
-    email = var.security_contact_email
-    language_tag = "en-US"
-    notification_category_subscriptions = ["SECURITY", "SUSPENSION", "TECHNICAL"]
-  
+  provider                            = google-beta
+  parent                              = "organizations/${var.org_id}"
+  email                               = var.security_contact_email
+  language_tag                        = "en-US"
+  notification_category_subscriptions = ["SECURITY", "SUSPENSION", "TECHNICAL"]
+
 }
 
 
@@ -135,19 +135,19 @@ resource "google_essential_contacts_contact" "security_org" {
 # ─────────────────────────────────────────────────────────────
 
 resource "google_billing_budget" "landing_zone_budget" {
-    billing_account = var.billing_account
-    display_name = "LZ-Total-Budget-Guard"
+  billing_account = var.billing_account
+  display_name    = "LZ-Total-Budget-Guard"
 
-    budget_filter {
-      projects = [
-        "projects/${google_project.network_hub.number}",
+  budget_filter {
+    projects = [
+      "projects/${google_project.network_hub.number}",
       "projects/${google_project.dev.number}",
       "projects/${google_project.prod.number}",
       "projects/${google_project.audit.number}",
-      ]
-    }
+    ]
+  }
 
-    amount {
+  amount {
     specified_amount {
       currency_code = "USD"
       units         = "250"

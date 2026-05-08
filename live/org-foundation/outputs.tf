@@ -4,13 +4,13 @@
 
 output "folder_id" {
   description = "The landing-zone folder ID. Used as parent for all LZ projects."
-  value = google_folder.landing_zone.name
+  value       = google_folder.landing_zone.name
 }
 
 output "network_hub_project_id" {
-    description = "Project ID of the Shared VPC Host project."
-    value = google_project.network_hub.project_id
-  
+  description = "Project ID of the Shared VPC Host project."
+  value       = google_project.network_hub.project_id
+
 }
 
 output "network_hub_project_number" {

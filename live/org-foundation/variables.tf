@@ -4,23 +4,23 @@
 # This file only declares the shape and description — no real values here.
 
 variable "org_id" {
-    description = "GCP Organization ID (numeric). Run: gcloud organizations list"
-    type        = string
-  
+  description = "GCP Organization ID (numeric). Run: gcloud organizations list"
+  type        = string
+
 }
 
 variable "billing_account" {
-    description = "GCP Billing Account ID. Run: gcloud billing accounts list"
+  description = "GCP Billing Account ID. Run: gcloud billing accounts list"
   type        = string
-  
+
 }
 
 
 variable "bootstrap_project_id" {
-    description = "The manually-created bootstrap project ID that hosts the Terraform state bucket."
+  description = "The manually-created bootstrap project ID that hosts the Terraform state bucket."
   type        = string
   default     = "lz-bootstrap-001"
-  
+
 }
 
 variable "region" {
