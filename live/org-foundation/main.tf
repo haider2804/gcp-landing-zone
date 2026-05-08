@@ -33,7 +33,7 @@ resource "google_project" "network_hub" {
     labels = merge(var.labels, {environment = "shared", purpose = "network-host"})
 
     lifecycle {
-      prevent_destroy = false
+      prevent_destroy = true
     }
   
 }
@@ -44,6 +44,10 @@ resource "google_project" "dev" {
   folder_id       = google_folder.landing_zone.name
   billing_account = var.billing_account
   labels          = merge(var.labels, { environment = "dev" })
+
+  lifecycle {
+      prevent_destroy = true
+    }
 }
 
 resource "google_project" "prod" {
@@ -54,7 +58,7 @@ resource "google_project" "prod" {
   labels          = merge(var.labels, { environment = "prod" })
 
   lifecycle {
-    prevent_destroy = false
+    prevent_destroy = true
   }
 }
 
@@ -68,7 +72,7 @@ resource "google_project" "audit" {
   labels          = merge(var.labels, { environment = "shared", purpose = "audit-logs" })
 
   lifecycle {
-    prevent_destroy = false
+    prevent_destroy = true
   }
 }
 
